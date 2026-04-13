@@ -1,0 +1,28 @@
+torch
+pandas
+numpy
+scikit-learn
+biopython
+pybedtools
+pyyaml
+
+# Core Python dependencies (version-pinned for reproducibility)
+torch==2.1.0
+pandas==2.1.0
+numpy==1.24.4
+scikit-learn==1.3.0
+biopython==1.81
+pybedtools==0.9.1
+pyyaml==6.0.1
+tqdm==4.66.1
+torchmetrics==1.2.0
+
+# External tools required for the full pipeline (install separately):
+#   samtools >=1.10
+#   bedtools >=2.30
+#   Genrich >=0.6
+#   seqtk >=1.3
+#
+# For conda users, you can install most tools with:
+#   conda install -c bioconda samtools bedtools seqtk
+#   # Genrich may require manual installation from https://github.com/jsh58/Genrich
