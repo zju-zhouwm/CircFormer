@@ -50,12 +50,31 @@ python preprocess.py -ed dataset/ -o encoded_data/
 python eccdna.py -t train -etr encoded_data/train -eva encoded_data/val -sp model.pth -g train_log.csv -e 20 -b 32 -l 2e-5
 ```
 
-### 3. Prediction
+### 3. Model Evaluation
+```bash
+# Using encoded data
+python eccdna.py -t test -m model.pth -ete encoded_test/
+
+# Using raw CSV
+python eccdna.py -t test -m model.pth -csv test_data.csv
+```
+
+### 4. Prediction
 ```bash
 python eccdna.py -t predict -m model.pth -i candidates.fa -o positives.fa
 ```
 
-### 4. Genomic Pipeline (from BAM to predictions)
+### 5. k-mer Attention Analysis
+```bash
+python eccdna.py -t kmer_attention -m model.pth -i sequences.csv -o kmer_attention.csv
+```
+
+### 6. ROC Curve Data Generation
+```bash
+python generate_roc.py -m model.pth -i test_data.csv -o roc_plot_data.csv
+```
+
+### 7. Genomic Pipeline (from BAM to predictions)
 ```bash
 python eccdna.py -t pipe -i sample.bam -r reference.fa -m model.pth -o results/ -n 3  # Minimum supporting reads
 ```
@@ -63,10 +82,6 @@ python eccdna.py -t pipe -i sample.bam -r reference.fa -m model.pth -o results/ 
 ## 📖 Usage
 
 All functions are accessed through the unified CLI interface `eccdna.py`:
-
-```bash
-python eccdna.py -t <task> [task-specific arguments]
-```
 
 ### Available Tasks
 
